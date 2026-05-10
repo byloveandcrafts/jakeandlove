@@ -224,11 +224,20 @@ section{padding:88px 20px;}
 #rsvp{background:var(--white);text-align:center;position:relative;overflow:hidden;}
 #rsvp::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(201,168,76,0.06) 0%,transparent 60%);}
 #rsvp .st{color:var(--dark);}#rsvp .ss{color:var(--text-light);}
-.rb{max-width:390px;margin:0 auto;padding:42px;border:1px solid var(--gold-light);background:var(--ivory);}
+
+/* UPDATED: Wider box and no border for the Google Form */
+.rb{max-width:650px;margin:0 auto;padding:20px 0;border:none;background:transparent;}
+
 .rdl{font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;color:var(--text);margin-bottom:26px;}
-.rqr{width:155px;height:155px;border:1px dashed var(--gold-light);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 18px;gap:7px;background:var(--champagne);}
-.rqr span{font-family:'Montserrat',sans-serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:rgba(201,168,76,0.38);}
-.rnote{font-family:'EB Garamond',serif;font-size:15px;font-style:italic;color:var(--text-light);margin-bottom:22px;}
+
+/* NEW: Styles the Google Form to look elegant */
+.rb iframe {
+    border-radius: 8px;
+    background: var(--white);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+/* Kept the button style just in case you use it elsewhere on the site */
 .btng{display:inline-block;padding:13px 38px;background:transparent;border:1px solid var(--gold);color:var(--gold);font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:all 0.3s;font-weight:300;}
 .btng:hover{background:var(--gold);color:var(--dark);}
 
@@ -1544,12 +1553,10 @@ window.addEventListener('DOMContentLoaded', () => {
       <div class="eb"><p class="et">Veil</p><ul class="en"><li>Marielle B. Bigueras</li><li>Raymart B. Balane</li></ul></div>
       <div class="eb"><p class="et">Cord</p><ul class="en"><li>Julliene Rain B. Borais</li><li>Laurence John B. Villamin</li></ul></div>
     </div>
-    <div class="eg2 reveal">
-      <div class="eb"><p class="et">Flower Girls</p>
-        <ul class="en"><li>Marie Yrabiel B. Baloloy</li><li>Samarah Myr H. Calleja</li><li>Milcah Adiya P. Barateta</li><li>Zavannah B. Caño</li></ul></div>
-      <div class="eb"><p class="et">Banner Bearers</p>
-        <ul class="en"><li>Johan B. Palanca</li><li>Chloe Lindsay P. Calleja</li></ul></div>
-    </div>
+    <div class="eg2 reveal" style="grid-template-columns: 1fr;">
+    <div class="eb"><p class="et">Flower Girls</p>
+      <ul class="en"><li>Marie Yrabiel B. Baloloy</li><li>Samarah Myr H. Calleja</li><li>Milcah Adiya P. Barateta</li><li>Zavannah B. Caño</li></ul></div>
+</div>
     <div class="sym-grid reveal">
       <div class="sym-item">
         <p class="sym-role">To Carry the Symbol of Love</p>
@@ -1800,11 +1807,20 @@ window.addEventListener('DOMContentLoaded', () => {
     <h2 class="st reveal">RSVP</h2>
     <div class="go reveal"><span style="color:var(--gold)">✦</span></div>
     <p class="ss reveal">Kindly confirm your attendance</p>
-    <div class="rb reveal">
+    
+    <div class="rb form-box reveal">
       <p class="rdl">Reply on or before<br><strong style="font-style:normal;color:var(--gold);">June 6, 2026</strong></p>
-      <div id="qr-rsvp" style="width:155px;height:155px;margin:0 auto;display:flex;align-items:center;justify-content:center;border:1px solid var(--gold-light);background:var(--white);padding:8px;"></div>
-      <p class="rnote">Scan to RSVP</p>
-      <a href="mailto:borromeolove3@gmail.com" class="btng">Send RSVP by Email</a>
+      
+      <iframe 
+  src="https://docs.google.com/forms/d/e/1FAIpQLSeemBzzQn9m27Q6MJ8PPd74yn0qKTjvkCus0VoYGZA8b21qiw/viewform?embedded=true" 
+  width="100%" 
+  height="800" 
+  frameborder="0" 
+  marginheight="0" 
+  marginwidth="0">
+  Loading…
+</iframe>
+      
     </div>
   </div>
 </section>
@@ -1986,13 +2002,7 @@ function toggleFaq(btn){
 <script>
 /* AUTO QR GENERATION */
 window.addEventListener('DOMContentLoaded', function(){
-  // RSVP QR — links to email RSVP
-  new QRCode(document.getElementById('qr-rsvp'), {
-    text: 'mailto:borromeolove3@gmail.com?subject=RSVP%20-%20Jake%20%26%20Love%20Wedding&body=Name:%0AAttending:%20Yes%20/%20No%0ANumber%20of%20guests:',
-    width: 139, height: 139,
-    colorDark: '#3A2E1E', colorLight: '#FFFFFF',
-    correctLevel: QRCode.CorrectLevel.M
-  });
+  
   // Church QR — Google Maps link
   new QRCode(document.getElementById('qr-church'), {
     text: 'https://maps.google.com/?q=Our+Lady+of+Fatima+Parish+Legazpi+City+Albay',
